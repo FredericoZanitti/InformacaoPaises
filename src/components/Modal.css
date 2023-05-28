@@ -26,6 +26,12 @@
   padding: 0.1em;
 }
 
+.texto-band-card-onu {
+  font-style: italic;
+  color: #999;
+  text-size-adjust: auto;
+}
+
 /* max-width  */
 @media screen and (max-width: 600px) {
   .card {
@@ -40,6 +46,9 @@
   }
   .texto-band-card {
     font-size: 0.6em;
+  }
+  .texto-band-card-onu {
+    font-size: 0.4em;
   }
 }
 
@@ -58,21 +67,12 @@
   .texto-band-card {
     font-size: 1em;
   }
-}
-
-/* botao */
-
-@mixin center($extend: true) {
-  @if $extend {
-    @extend %center;
-  } @else {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+  .texto-band-card-onu {
+    font-size: 0.8em;
   }
 }
 
+/* botao */
 button {
   backface-visibility: hidden;
   position: relative;

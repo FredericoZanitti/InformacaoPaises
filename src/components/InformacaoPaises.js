@@ -84,6 +84,7 @@ export default function InformacaoPaises() {
         isOpen={openModal}
         setModalOpen={() => setOpenModal(!openModal)}
         setCodigoIndividual={codigoInd}
+        setData={dgData}
       ></Modal>
     </div>
   );
