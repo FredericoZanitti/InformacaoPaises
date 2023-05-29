@@ -20,7 +20,6 @@ export default function InformacaoPaises() {
             b.translations.por.common
           );
         });
-
         setDgData(sortedData);
       })
       .catch((err) => {
@@ -34,6 +33,14 @@ export default function InformacaoPaises() {
     select.addEventListener("change", function () {
       setRegiao(select.value);
     });
+  }
+
+  function buscarCodigoInternacional(item) {
+    if (!(item.cca3 === "")) {
+      return item.cca3;
+    } else if (!(item.cca2 === "")) {
+      return item.cca2;
+    } else return "N/A";
   }
 
   //abrir modal
@@ -76,7 +83,7 @@ export default function InformacaoPaises() {
               : "Continente: N/A"}
           </p>
           <p className="info-paises-others" id="codigo-pais">
-            <b>Código Internacional:</b> {item.fifa}
+            <b>Código Internacional:</b> {buscarCodigoInternacional(item)}
           </p>
         </div>
       ))}

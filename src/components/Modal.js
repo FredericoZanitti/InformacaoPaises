@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Modal.css";
 
 //esse children pode ser qualquer coisa que será passada no modal: um objeto, um botao, um paragrafo, ec.
@@ -9,18 +9,39 @@ export default function Modal({
   setData,
   children,
 }) {
+  const [onuReconhecido, setOnuReconhecido] = useState(true);
+
+  //precisa definir um useEffect porque a classe só deve ser adicionada
+  //quando renderizar o componente, por isso o useEffect monitora o
+  //setCodigoIndividual.independent para ter efeito somente quando
+  //este for alterado de fato.
+  useEffect(() => {
+    function verificarReconhecimentoOnu(rec) {
+      if (rec) {
+        setOnuReconhecido(false);
+      } else {
+        setOnuReconhecido(true);
+      }
+    }
+
+    verificarReconhecimentoOnu(setCodigoIndividual.independent);
+  }, [setCodigoIndividual.independent]);
+
   if (isOpen) {
     function retornarMoedas(currencies) {
       let output = "";
 
-      for (let currencyCode in currencies) {
-        if (currencies.hasOwnProperty(currencyCode)) {
-          let currency = currencies[currencyCode];
-          output += `( ${currencyCode} ) ${currency.name}, `;
+      if (currencies) {
+        for (let currencyCode in currencies) {
+          if (currencies.hasOwnProperty(currencyCode)) {
+            let currency = currencies[currencyCode];
+            output += `( ${currencyCode} ) ${currency.name}, `;
+          }
         }
-      }
-      // Removendo a vírgula extra no final
-      output = output.slice(0, -2);
+        // Removendo a vírgula extra no final
+        output = output.slice(0, -2);
+      } else output = "N/A";
+
       return output;
     }
 
@@ -47,12 +68,22 @@ export default function Modal({
     function buscarIdiomas(lang) {
       let output = "";
 
-      for (const [languageCode, languageName] of Object.entries(lang)) {
-        output += `${languageName}, `;
-      }
-      // Removendo a vírgula extra no final
-      output = output.slice(0, -2);
+      if (lang) {
+        for (const [languageCode, languageName] of Object.entries(lang)) {
+          output += `${languageName}, `;
+        }
+        // Removendo a vírgula extra no final
+        output = output.slice(0, -2);
+      } else output = "N/A";
       return output;
+    }
+
+    function buscarCodigoInternacional(item) {
+      if (!(item.cca3 === "")) {
+        return item.cca3;
+      } else if (!(item.cca2 === "")) {
+        return item.cca2;
+      } else return "N/A";
     }
 
     return (
@@ -61,87 +92,91 @@ export default function Modal({
           <div>{children}</div>
 
           <div className="card">
-            <div className="bandeira-nome-card">
+            <div className="bandeira-card">
               <img
-                className="bandeira-card"
+                className="bandeira-card-item"
                 src={setCodigoIndividual.flags.png}
                 alt={setCodigoIndividual.flags.alt}
               />
 
-              <p className="texto-band-card">
+              <span>
                 <b>Nome Oficial</b>
                 <br />
                 {setCodigoIndividual.name.official}
-              </p>
-              <p className="texto-band-card">
+              </span>
+              <span>
                 <b>Nome Popular</b>
                 <br />
                 {setCodigoIndividual.name.common}
-              </p>
-              <p className="texto-band-card-onu">
-                {!setCodigoIndividual.independent
-                  ? "*Não reconhecido pela ONU"
-                  : ""}
-              </p>
+              </span>
+              <span
+                className={`texto-band-card-onu ${
+                  onuReconhecido ? "" : "visibilidade"
+                }`}
+              >
+                <p className="rec-onu">
+                  *Não reconhecido pela ONU como uma nação independente.
+                </p>
+              </span>
             </div>
             <div className="texto-card">
-              <div className="nomes-card">
-                {setCodigoIndividual.capital &&
-                setCodigoIndividual.capital.length > 0 ? (
-                  <p>
-                    <b>
-                      {setCodigoIndividual.capital.length === 1
-                        ? "Capital"
-                        : "Capitais"}
-                    </b>
-                    : {setCodigoIndividual.capital.join(", ")}
-                  </p>
-                ) : (
-                  <p>
-                    <b>Capital:</b> N/A
-                  </p>
-                )}
-                <p>
-                  <b>População:</b>{" "}
-                  {setCodigoIndividual.population.toLocaleString()}
-                </p>
-                <p>
-                  <b>Moeda:</b> {retornarMoedas(setCodigoIndividual.currencies)}
-                </p>
-                <p>
-                  <b>Idiomas:</b> {buscarIdiomas(setCodigoIndividual.languages)}{" "}
-                </p>
-                <p>
-                  <b>Código Internacional:</b> {setCodigoIndividual.cca3}
-                </p>
+              {setCodigoIndividual.capital &&
+              setCodigoIndividual.capital.length > 0 ? (
+                <span>
+                  <b>
+                    {setCodigoIndividual.capital.length === 1
+                      ? "Capital"
+                      : "Capitais"}
+                  </b>
+                  : {setCodigoIndividual.capital.join(", ")}
+                </span>
+              ) : (
+                <span>
+                  <b>Capital:</b> N/A
+                </span>
+              )}
+              <span>
+                <b>População:</b>{" "}
+                {setCodigoIndividual.population.toLocaleString()}
+              </span>
+              <span>
+                <b>Moeda:</b> {retornarMoedas(setCodigoIndividual.currencies)}
+              </span>
+              <span>
+                <b>Idiomas:</b> {buscarIdiomas(setCodigoIndividual.languages)}{" "}
+              </span>
+              <span>
+                <b>Código Internacional: </b>
+                {buscarCodigoInternacional(setCodigoIndividual)}
+              </span>
+              <span>
                 <b>Área: </b>
                 {setCodigoIndividual.area.toLocaleString()} km²
-                <p>
-                  <b>Região:</b> {setCodigoIndividual.region}
-                </p>
-                <p>
-                  <b>Continente:</b>{" "}
-                  {setCodigoIndividual.continents &&
-                  setCodigoIndividual.continents.length > 0
-                    ? setCodigoIndividual.continents[0]
-                    : "Continente: N/A"}
-                </p>
-                {setCodigoIndividual.timezones &&
-                setCodigoIndividual.timezones.length > 0 ? (
-                  <p>
-                    <b>Time Zones:</b>{" "}
-                    {setCodigoIndividual.timezones.join(", ")}
-                  </p>
-                ) : (
-                  <p>
-                    <b>Time Zones:</b> N/A
-                  </p>
-                )}
-                <p>
-                  <b>Fronteiras:</b>{" "}
-                  {buscarNomeFronteiras(setData, setCodigoIndividual.cca3)}
-                </p>
-              </div>
+              </span>
+              <span>
+                <b>Região:</b> {setCodigoIndividual.region}
+              </span>
+              <span>
+                <b>Continente:</b>{" "}
+                {setCodigoIndividual.continents &&
+                setCodigoIndividual.continents.length > 0
+                  ? setCodigoIndividual.continents[0]
+                  : "Continente: N/A"}
+              </span>
+              {setCodigoIndividual.timezones &&
+              setCodigoIndividual.timezones.length > 0 ? (
+                <span>
+                  <b>Time Zones:</b> {setCodigoIndividual.timezones.join(", ")}
+                </span>
+              ) : (
+                <span>
+                  <b>Time Zones:</b> N/A
+                </span>
+              )}
+              <span>
+                <b>Fronteiras:</b>{" "}
+                {buscarNomeFronteiras(setData, setCodigoIndividual.cca3)}
+              </span>
             </div>
           </div>
 

@@ -10,6 +10,7 @@ export default function SeletorRegiao() {
         <option value="Todas">Todos</option>
         <option value="Africa">África</option>
         <option value="Americas">América</option>
+        <option value="Antarctic">Antártida</option>
         <option value="Asia">Ásia</option>
         <option value="Europe">Europa</option>
         <option value="Oceania">Oceania</option>

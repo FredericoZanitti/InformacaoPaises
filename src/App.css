@@ -1,12 +1,42 @@
 body {
   margin: auto;
-  padding: 0 4em;
 }
 
 .App {
   text-align: center;
   margin: auto;
-  width: 100%;
+  padding: 1em;
+}
+
+.cabecalho {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  top: 0;
+  text-align: center;
+  font-weight: bold;
+  color: #282c34;
+  padding: 0.6em;
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+  font-family: "Source Code Pro", monospace;
+}
+
+.selecionar-regiao {
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+  background: #fff;
+  height: 2.8em;
+  top: 0;
+  text-align: center;
+  font-weight: bold;
+  color: #282c34;
+  padding: 0.6em;
+}
+
+.info-paises {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  grid-gap: 1em;
+  grid-auto-flow: row;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -39,14 +69,6 @@ body {
   }
 }
 
-.info-paises {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(13em, 1fr));
-  grid-gap: 1em;
-  grid-auto-flow: row;
-  margin: auto;
-}
-
 .info-paises-itens {
   background-color: whitesmoke;
   width: 85%;
@@ -60,6 +82,7 @@ body {
 
 .info-paises-bandeira {
   height: 4vi;
+  display: inline-block;
 }
 
 .info-paises-nome {
@@ -111,31 +134,6 @@ body {
   float: left;
   width: 65%;
   padding: 0.5em;
-}
-
-.cabecalho {
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  background: #fff;
-  top: 0;
-  text-align: center;
-  font-weight: bold;
-  color: #282c34;
-  padding: 0.6em;
-  margin-top: 0.6em;
-  margin-bottom: 0.2em;
-  font-family: "Source Code Pro", monospace;
-}
-
-.selecionar-regiao {
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
-  background: #fff;
-  height: 2.8em;
-  top: 0;
-
-  text-align: center;
-  font-weight: bold;
-  color: #282c34;
-  padding: 0.6em;
 }
 
 .seletor-regioes {

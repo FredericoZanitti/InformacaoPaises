@@ -1,54 +1,51 @@
+* {
+  font-family: "Source Code Pro", monospace;
+}
+
 .card {
   background-color: whitesmoke;
   width: 40vi;
   padding: 1em;
   border-radius: 1em;
   text-align: left;
-  font-family: "Source Code Pro", monospace;
   box-shadow: 0 0 3em rgba(0, 0, 0, 0.2);
   margin: auto;
 }
 
 .texto-card {
-  border-radius: 1em;
   text-align: left;
-  font-family: "Source Code Pro", monospace;
+  display: inline-block;
+  height: auto;
+  width: auto;
 }
 
-.nomes-card {
-  top: 0;
-  font-size: 1.2em;
-  float: left;
-}
-
-.nomes-card p,
-.bandeira-nome-card p {
-  padding: 0.1em;
-}
-
-.texto-band-card-onu {
-  font-style: italic;
+span {
+  display: inline-block;
   color: #999;
-  text-size-adjust: auto;
+  padding: 0.5em;
+  padding-left: 1em;
+  width: 93%;
+  height: auto;
+  text-align: left;
+  box-shadow: 0 0 3em rgba(228, 226, 226, 0.5);
+  border-radius: 1em;
+}
+
+.bandeira-card-item {
+  display: inline-block;
 }
 
 /* max-width  */
 @media screen and (max-width: 600px) {
   .card {
     display: block;
-    height: 30em;
+    height: auto;
   }
-  .bandeira-card {
+  .bandeira-card-item {
     height: 4em;
   }
-  .texto-card {
-    font-size: 0.4em;
-  }
-  .texto-band-card {
-    font-size: 0.6em;
-  }
-  .texto-band-card-onu {
-    font-size: 0.4em;
+  span {
+    font-size: 0.5em;
   }
 }
 
@@ -58,17 +55,11 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(2em, 1fr));
   }
-  .bandeira-card {
-    height: 10em;
+  .bandeira-card-item {
+    max-height: 8em;
   }
-  .texto-card {
-    font-size: 0.8em;
-  }
-  .texto-band-card {
-    font-size: 1em;
-  }
-  .texto-band-card-onu {
-    font-size: 0.8em;
+  span {
+    font-size: 0.9em;
   }
 }
 
@@ -88,7 +79,6 @@ button {
     0px 1px 0px 3px rgba(0, 0, 0, 0.2), inset 0px 1px 0px rgba(255, 255, 255, 1);
   color: #222;
   font-size: 16px;
-  font-family: "Source Code Pro", monospace;
   font-weight: 900;
   font-style: normal;
   margin-top: 1em;
@@ -97,7 +87,6 @@ button {
 button > div {
   color: #999;
   font-size: 10px;
-  font-family: "Source Code Pro", monospace;
   font-weight: initial;
   font-style: normal;
   text-align: center;
@@ -116,4 +105,14 @@ button > i {
 
 button > .ld {
   font-size: initial;
+}
+
+.visibilidade {
+  display: none;
+}
+
+.rec-onu {
+  font-style: italic;
+  margin: 0;
+  padding: 0;
 }
