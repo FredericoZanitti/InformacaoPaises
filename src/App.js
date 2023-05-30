@@ -6,13 +6,14 @@ import { useState } from "react"; // Importe o useState do React
 
 function App() {
   const [searchValue, setSearchValue] = useState(""); // Defina o estado para searchValue
+  const [tipo, setTipo] = useState("qq"); // Defina o estado para tipo
 
   return (
     <div className="App">
       <Cabecalho />
-      <SeletorRegiao setSearchValue={setSearchValue} />{" "}
+      <SeletorRegiao setSearchValue={setSearchValue} setTipo={setTipo} />{" "}
       {/* Passe setSearchValue como prop */}
-      <InformacaoPaises searchValue={searchValue} />
+      <InformacaoPaises searchValue={searchValue} tipo={tipo} />
     </div>
   );
 }

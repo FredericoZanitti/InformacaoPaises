@@ -2,7 +2,7 @@ import { infoPaises } from "../api/paises.js";
 import { useState, useEffect } from "react";
 import Modal from "./Modal.js";
 
-export default function InformacaoPaises({ searchValue }) {
+export default function InformacaoPaises({ searchValue, tipo }) {
   const [dgData, setDgData] = useState([]);
   const [regiao, setRegiao] = useState("Todas");
   const [openModal, setOpenModal] = useState(false);
@@ -63,11 +63,12 @@ export default function InformacaoPaises({ searchValue }) {
   return (
     <div className="info-paises">
       {dgData
-        .filter((item) =>
-          replaceSpecialChars(item.translations.por.common).includes(
-            replaceSpecialChars(searchValue)
-          )
-        )
+        .filter((item) => {
+          const data = replaceSpecialChars(item.translations.por.common);
+          if (tipo === "qq")
+            return data.includes(replaceSpecialChars(searchValue));
+          else return data.startsWith(replaceSpecialChars(searchValue));
+        })
         .map((item, index) => (
           <div
             key={index}

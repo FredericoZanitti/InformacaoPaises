@@ -1,6 +1,9 @@
-export default function SeletorRegiao({ setSearchValue }) {
+export default function SeletorRegiao({ setSearchValue, setTipo }) {
   function handleChange(event) {
     setSearchValue(event.target.value);
+  }
+  function handleChangeTipo(event) {
+    setTipo(event.target.value);
   }
 
   return (
@@ -27,6 +30,30 @@ export default function SeletorRegiao({ setSearchValue }) {
         placeholder="Pesquisar por nome..."
         onChange={handleChange}
       />
+
+      <form className="container">
+        <label>
+          <input
+            type="radio"
+            name="radio"
+            id="radio"
+            value="in"
+            onChange={handleChangeTipo}
+          />
+          Início
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="radio"
+            id="radio"
+            value="qq"
+            onChange={handleChangeTipo}
+          />
+          Qualquer parte
+        </label>
+      </form>
     </div>
   );
 }
