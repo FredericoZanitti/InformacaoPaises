@@ -1,4 +1,8 @@
-export default function SeletorRegiao() {
+export default function SeletorRegiao({ setSearchValue }) {
+  function handleChange(event) {
+    setSearchValue(event.target.value);
+  }
+
   return (
     <div className="selecionar-regiao">
       <select
@@ -15,6 +19,14 @@ export default function SeletorRegiao() {
         <option value="Europe">Europa</option>
         <option value="Oceania">Oceania</option>
       </select>
+      <input
+        type="search"
+        name="search"
+        id="search"
+        className="pesquisa-pais"
+        placeholder="Pesquisar por nome..."
+        onChange={handleChange}
+      />
     </div>
   );
 }
