@@ -163,6 +163,9 @@ export default function Modal({
                   ? setCodigoIndividual.continents[0]
                   : "Continente: N/A"}
               </span>
+              <span>
+                <b>Subregião:</b> {setCodigoIndividual.subregion}
+              </span>
               {setCodigoIndividual.timezones &&
               setCodigoIndividual.timezones.length > 0 ? (
                 <span>
