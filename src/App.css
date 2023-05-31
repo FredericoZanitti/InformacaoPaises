@@ -23,12 +23,19 @@ body {
 .selecionar-regiao {
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
   background: #fff;
-  height: 2.8em;
+  height: 8em;
   top: 0;
   text-align: center;
   font-weight: bold;
   color: #282c34;
   padding: 0.6em;
+  padding-left: 3em;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  grid-gap: 3em;
+  grid-auto-flow: row;
+  align-items: center;
 }
 
 .info-paises {
@@ -170,8 +177,10 @@ body {
     width: 10em;
   }
   .selecionar-regiao {
-    height: 10em;
+    height: 15em;
     display: block;
+    padding-left: 0;
+    margin: 0;
   }
   .info-paises-bandeira {
     height: 25vi;
@@ -192,6 +201,9 @@ body {
   }
   .seletor-regioes {
     width: 15em;
+  }
+  .separador {
+    display: none;
   }
 }
 
@@ -286,4 +298,12 @@ input:after {
   align-items: center;
   font-weight: normal;
   font-size: 0.9em;
+  background-color: yellow;
+}
+
+.radio {
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
 }

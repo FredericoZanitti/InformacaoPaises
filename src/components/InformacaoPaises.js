@@ -2,7 +2,11 @@ import { infoPaises } from "../api/paises.js";
 import { useState, useEffect } from "react";
 import Modal from "./Modal.js";
 
-export default function InformacaoPaises({ searchValue, tipo }) {
+export default function InformacaoPaises({
+  searchValue,
+  tipoPesquisa,
+  reconhecido,
+}) {
   const [dgData, setDgData] = useState([]);
   const [regiao, setRegiao] = useState("Todas");
   const [openModal, setOpenModal] = useState(false);
@@ -65,9 +69,34 @@ export default function InformacaoPaises({ searchValue, tipo }) {
       {dgData
         .filter((item) => {
           const data = replaceSpecialChars(item.translations.por.common);
-          if (tipo === "qq")
-            return data.includes(replaceSpecialChars(searchValue));
-          else return data.startsWith(replaceSpecialChars(searchValue));
+
+          if (tipoPesquisa === "q") {
+            if (reconhecido === "t")
+              return data.includes(replaceSpecialChars(searchValue));
+            else if (reconhecido === "s")
+              return (
+                item.independent &&
+                data.includes(replaceSpecialChars(searchValue))
+              );
+            else if (reconhecido === "n")
+              return (
+                !item.independent &&
+                data.includes(replaceSpecialChars(searchValue))
+              );
+          } else if (tipoPesquisa === "i") {
+            if (reconhecido === "t")
+              return data.startsWith(replaceSpecialChars(searchValue));
+            else if (reconhecido === "s")
+              return (
+                item.independent &&
+                data.startsWith(replaceSpecialChars(searchValue))
+              );
+            else if (reconhecido === "n")
+              return (
+                !item.independent &&
+                data.startsWith(replaceSpecialChars(searchValue))
+              );
+          }
         })
         .map((item, index) => (
           <div
