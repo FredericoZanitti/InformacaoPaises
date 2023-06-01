@@ -253,3 +253,10 @@ input:after {
 .pesquisa-pais-input::placeholder {
   color: rgb(223, 218, 218);
 }
+
+.copyright {
+  display: block;
+  font-size: 0.7em;
+  padding-top: 4em;
+  color: lightslategrey;
+}

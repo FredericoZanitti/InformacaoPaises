@@ -32,6 +32,9 @@ export default function FiltrosPesquisa({
       <EscolherPesquisa onChangeTipoPesquisa={handleTipoPesquisaChange} />
       <span className="separador"></span>
       <EscolherTipo onChangeReconhecidos={handleReconhecidoChange} />
+      <div className="copyright">
+        Copyright © 2023 <br /> Frederico Zanitti Silva
+      </div>
     </div>
   );
 }
