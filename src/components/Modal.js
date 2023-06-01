@@ -27,6 +27,24 @@ export default function Modal({
     verificarReconhecimentoOnu(setCodigoIndividual.independent);
   }, [setCodigoIndividual.independent]);
 
+  //fechar janela com o ESC
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.keyCode === 27) {
+        // Verifica se a tecla pressionada é o "ESC" (código 27)
+        if (isOpen) {
+          setModalOpen(false); // Fecha a janela do modal
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown); // Adiciona o event listener
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown); // Remove o event listener ao desmontar o componente
+    };
+  }, [isOpen, setModalOpen]);
+
   if (isOpen) {
     function retornarMoedas(currencies) {
       let output = "";
