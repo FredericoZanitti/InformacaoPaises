@@ -20,6 +20,7 @@ export default function EscolherIdioma() {
         <option value="Croatian">Croata</option>
         <option value="Danish">Dinamarquês</option>
         <option value="Spanish">Espanhol</option>
+        <option value="French">Francês</option>
         <option value="Greek">Grego</option>
         <option value="Dutch">Holandês</option>
         <option value="English">Inglês</option>
