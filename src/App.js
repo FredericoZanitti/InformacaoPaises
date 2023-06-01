@@ -1,7 +1,7 @@
 import "./App.css";
 import Cabecalho from "./components/Cabecalho";
 import InformacaoPaises from "./components/InformacaoPaises";
-import SeletorRegiao from "./components/SeletorRegiao";
+import FiltrosPesquisa from "./components/FiltrosPesquisa";
 import { useState, useEffect } from "react"; // Importe o useState do React
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
   const [reconhecido, setReconhecido] = useState("t");
 
   useEffect(() => {
+    //marcação default dos combos de pesquisa por nome e nação independente
     const pesq = document.getElementById("qualquerparte");
     pesq.checked = true;
     const rec = document.getElementById("todas");
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Cabecalho />
-      <SeletorRegiao
+      <FiltrosPesquisa
         setSearchValue={setSearchValue}
         onChangeTipoPesquisa={handleTipoPesquisaChange}
         onChangeReconhecidos={handleReconhecidoChange}

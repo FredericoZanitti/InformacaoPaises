@@ -9,6 +9,7 @@ export default function InformacaoPaises({
 }) {
   const [dgData, setDgData] = useState([]);
   const [regiao, setRegiao] = useState("Todas");
+  const [idioma, setIdioma] = useState("Todos");
   const [openModal, setOpenModal] = useState(false);
   const [codigoInd, setCodigoInd] = useState({});
 
@@ -43,10 +44,18 @@ export default function InformacaoPaises({
   };
 
   //capiturar o clique do select de regiões
-  let select = document.getElementById("seletor-regioes");
+  let select = document.getElementById("combobox-regioes");
   if (select) {
     select.addEventListener("change", function () {
       setRegiao(select.value);
+    });
+  }
+
+  //capiturar o clique do select de idiomas
+  let selectLang = document.getElementById("combobox-idiomas");
+  if (selectLang) {
+    selectLang.addEventListener("change", function () {
+      setIdioma(selectLang.value);
     });
   }
 
@@ -69,33 +78,39 @@ export default function InformacaoPaises({
       {dgData
         .filter((item) => {
           const data = replaceSpecialChars(item.translations.por.common);
-
           if (tipoPesquisa === "q") {
-            if (reconhecido === "t")
-              return data.includes(replaceSpecialChars(searchValue));
-            else if (reconhecido === "s")
-              return (
-                item.independent &&
-                data.includes(replaceSpecialChars(searchValue))
-              );
-            else if (reconhecido === "n")
-              return (
-                !item.independent &&
-                data.includes(replaceSpecialChars(searchValue))
-              );
+            return data.includes(replaceSpecialChars(searchValue));
           } else if (tipoPesquisa === "i") {
-            if (reconhecido === "t")
-              return data.startsWith(replaceSpecialChars(searchValue));
-            else if (reconhecido === "s")
-              return (
-                item.independent &&
-                data.startsWith(replaceSpecialChars(searchValue))
-              );
-            else if (reconhecido === "n")
-              return (
-                !item.independent &&
-                data.startsWith(replaceSpecialChars(searchValue))
-              );
+            return data.startsWith(replaceSpecialChars(searchValue));
+          }
+        })
+        .filter((item) => {
+          const data = replaceSpecialChars(item.translations.por.common);
+          if (reconhecido === "t") {
+            return data.includes(replaceSpecialChars(searchValue));
+          } else if (reconhecido === "s")
+            return (
+              item.independent &&
+              data.includes(replaceSpecialChars(searchValue))
+            );
+          else if (reconhecido === "n")
+            return (
+              !item.independent &&
+              data.includes(replaceSpecialChars(searchValue))
+            );
+        })
+        .filter((item) => {
+          const data = replaceSpecialChars(item.translations.por.common);
+          if (selectLang.value === "Todos") {
+            return data.includes(replaceSpecialChars(searchValue));
+          } else {
+            return (
+              item.languages &&
+              Object.values(item.languages).some((lang) =>
+                lang.includes(selectLang.value)
+              ) &&
+              data.includes(replaceSpecialChars(searchValue))
+            );
           }
         })
         .map((item, index) => (

@@ -7,6 +7,9 @@ export default function EscolherTipo({ onChangeTipoPesquisa }) {
 
   return (
     <div className="escolher-tipo">
+      <label htmlFor="inicio" className="parte-nome-label">
+        Pesquisar nome
+      </label>
       <input
         type="radio"
         className="input-radio"
@@ -17,7 +20,7 @@ export default function EscolherTipo({ onChangeTipoPesquisa }) {
       />
       <label htmlFor="inicio" className="input-label">
         <div className="radio-btn"></div>
-        <span>Pesquisar pelo início</span>
+        <span>Pelo início</span>
       </label>
 
       <input

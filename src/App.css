@@ -18,24 +18,11 @@ body {
   margin-top: 0.6em;
   margin-bottom: 0.2em;
   font-family: "Source Code Pro", monospace;
-}
 
-.selecionar-regiao {
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
-  background: #fff;
-  height: 8em;
-  top: 0;
-  text-align: center;
-  font-weight: bold;
-  color: #282c34;
-  padding: 0.6em;
-  padding-left: 3em;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-  grid-gap: 3em;
-  grid-auto-flow: row;
-  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 1.4em;
+  z-index: 1;
 }
 
 .info-paises {
@@ -43,6 +30,19 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   grid-gap: 1em;
   grid-auto-flow: row;
+
+  position: relative;
+  left: 17em;
+  top: 4.5em;
+  width: 83%;
+}
+
+.filtros-pesquisa {
+  display: block;
+  position: fixed;
+  top: 6em;
+  width: 16em;
+  height: 30em;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -120,13 +120,6 @@ body {
   cursor: pointer; /* border none lo borra */
 }
 
-.custom-select {
-  display: flex;
-  float: right;
-  width: 20%;
-  margin-top: 1.5em;
-}
-
 .header {
   display: block;
   margin: auto;
@@ -142,55 +135,34 @@ body {
   padding: 0.5em;
 }
 
-.seletor-regioes {
-  height: 2em;
-  font-family: "Source Code Pro", monospace;
-  font-size: 1.2em;
-  color: #282c34;
-  border: 0.1em solid rgba(0, 0, 0, 0.082);
-  border-radius: 0.4em;
-  text-align: center;
-}
-
-.selecionar-tipo {
-  height: 1.7em;
-  font-family: "Source Code Pro", monospace;
-  font-weight: normal;
-  font-size: 0.8em;
-  color: #282c34;
-  border: 0.1em solid rgba(0, 0, 0, 0.082);
-  border-radius: 0.4em;
-  text-align: center;
-  margin-left: 2em;
-  padding: 0.5em 1em 0 0;
-  display: inline-block;
-}
-
 /* max-width  */
 @media screen and (max-width: 600px) {
   .cabecalho {
     font-size: 1em;
+    width: 90%;
   }
-  .seletor-regioes {
-    font-size: 1em;
-    text-align: center;
-    width: 10em;
-  }
-  .selecionar-regiao {
-    height: 15em;
-    display: block;
+  .filtros-pesquisa {
     padding-left: 0;
     margin: 0;
+
+    top: 6em;
+    width: 13em;
   }
   .info-paises-bandeira {
     height: 25vi;
   }
 
-  .seletor-regioes,
-  .pesquisa-pais,
-  .container {
-    margin-top: 1.2em;
-    margin-bottom: 1.2em;
+  .combobox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    grid-auto-flow: row;
+    align-items: center;
+  }
+  .separador {
+    display: none;
+  }
+  .info-paises {
+    width: 45%;
   }
 }
 
@@ -199,45 +171,19 @@ body {
   .cabecalho {
     font-size: 1.5em;
   }
-  .seletor-regioes {
-    width: 15em;
-  }
   .separador {
     display: none;
   }
+  .info-paises {
+    width: 70%;
+  }
 }
 
-/* popup pais */
-.popup-pais {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000; /*cria a camada para trazer o popup para frente*/
-}
-
-.popup-pais-interno {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 1em;
-  background-color: #fff;
-  border-radius: 1em;
-  color: black;
-}
-
-.pesquisa-pais {
-  height: 2.6em;
-  width: 20em;
-  padding-left: 1.5em;
-  top: 0;
-  text-align: left;
-  font-weight: bold;
-  color: #282c34;
-  margin: 0 0 0 2em; /* direção top - right - botton - left */
+/* min-width */
+@media screen and (min-width: 1100px) {
+  .info-paises {
+    width: 75%;
+  }
 }
 
 input:hover {
@@ -281,29 +227,29 @@ input:after {
   transition: all 0.3s ease-in-out;
 }
 
-/* pretty radio */
-.container label {
-  display: flexbox;
-  cursor: pointer;
-  padding-left: 2em;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width: 25em;
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
+.pesquisa-pais-nome-label {
   font-weight: normal;
   font-size: 0.9em;
-  background-color: yellow;
+  display: block;
+  margin-bottom: 0.4em;
+  color: lightslategrey;
 }
 
-.radio {
-  line-height: 1.1;
-  display: grid;
-  grid-template-columns: 1em auto;
-  gap: 0.5em;
+.pesquisa-pais-input {
+  height: 2em;
+  width: 16em;
+  padding-left: 1.5em;
+  top: 0;
+  text-align: left;
+  color: #282c34;
+}
+
+.pesquisa-pais-nome {
+  display: block;
+  text-align: left;
+  margin-left: 0.6em;
+}
+
+.pesquisa-pais-input::placeholder {
+  color: rgb(223, 218, 218);
 }

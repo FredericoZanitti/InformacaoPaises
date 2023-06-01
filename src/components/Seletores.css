@@ -1,0 +1,57 @@
+.combobox-filtros {
+  font-family: "Source Code Pro", monospace;
+  font-size: 0.9em;
+  color: #282c34;
+  border: 0.1em solid rgba(0, 0, 0, 0.082);
+  border-radius: 0.4em;
+  text-align: left;
+  width: 13em;
+}
+
+/* max-width  */
+@media screen and (max-width: 600px) {
+  .combobox-filtros {
+    font-size: 1em;
+  }
+
+  .label-comboboxes {
+    margin: 0;
+    width: 15em;
+  }
+}
+
+/* min-width */
+@media screen and (min-width: 900px) {
+  .combobox-filtros {
+    margin: 0;
+    padding: 0;
+  }
+
+  .label-comboboxes {
+    margin: 0;
+  }
+}
+
+.seletor-idiomas {
+  padding: 0.5em;
+  margin: auto;
+  display: block;
+  width: 16em;
+  text-align: left;
+}
+
+.seletor-regiao {
+  padding: 0.5em;
+  margin: auto;
+  display: block;
+  width: 16em;
+  text-align: left;
+}
+
+.label-comboboxes {
+  font-weight: normal;
+  font-size: 0.9em;
+  display: block;
+  margin-bottom: 0.4em;
+  color: lightslategrey;
+}
