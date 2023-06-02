@@ -8,6 +8,7 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [tipoPesquisa, setTipoPesquisa] = useState("q");
   const [reconhecido, setReconhecido] = useState("t");
+  const [ordem, setOrdem] = useState("a");
 
   useEffect(() => {
     //marcação default dos combos de pesquisa por nome e nação independente
@@ -15,6 +16,8 @@ function App() {
     pesq.checked = true;
     const rec = document.getElementById("todas");
     rec.checked = true;
+    const ord = document.getElementById("ascendente");
+    ord.checked = true;
   }, []);
 
   function handleTipoPesquisaChange(value) {
@@ -25,6 +28,10 @@ function App() {
     setReconhecido(value);
   }
 
+  function handleOrdemChange(value) {
+    setOrdem(value);
+  }
+
   return (
     <div className="App">
       <Cabecalho />
@@ -32,11 +39,13 @@ function App() {
         setSearchValue={setSearchValue}
         onChangeTipoPesquisa={handleTipoPesquisaChange}
         onChangeReconhecidos={handleReconhecidoChange}
+        onChangeOrdem={handleOrdemChange}
       />
       <InformacaoPaises
         searchValue={searchValue}
         tipoPesquisa={tipoPesquisa}
         reconhecido={reconhecido}
+        ordem={ordem}
       />
     </div>
   );

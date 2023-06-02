@@ -229,8 +229,9 @@ input:after {
 
 .pesquisa-pais-nome-label {
   font-weight: normal;
-  font-size: 0.9em;
+  font-size: 0.8em;
   display: block;
+  margin-top: 0.6em;
   margin-bottom: 0.4em;
   color: lightslategrey;
 }
@@ -242,6 +243,7 @@ input:after {
   top: 0;
   text-align: left;
   color: #282c34;
+  margin-bottom: 0.7em;
 }
 
 .pesquisa-pais-nome {

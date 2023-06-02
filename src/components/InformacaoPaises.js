@@ -6,10 +6,12 @@ export default function InformacaoPaises({
   searchValue,
   tipoPesquisa,
   reconhecido,
+  ordem,
 }) {
   const [dgData, setDgData] = useState([]);
   const [regiao, setRegiao] = useState("Todas");
   const [idioma, setIdioma] = useState("Todos");
+  const [classificacao, setClassificacao] = useState("Nenhum");
   const [openModal, setOpenModal] = useState(false);
   const [codigoInd, setCodigoInd] = useState({});
 
@@ -26,6 +28,12 @@ export default function InformacaoPaises({
   useEffect(() => {
     onClickSearch(regiao);
   }, [regiao]);
+
+  useEffect(() => {
+    let ordemObj = document.getElementById("esconder-ordem");
+    if (classificacao === "Nenhum") ordemObj.classList.add("visibilidade");
+    else ordemObj.classList.remove("visibilidade");
+  }, [classificacao]);
 
   const onClickSearch = (regiao) => {
     infoPaises(regiao)
@@ -59,6 +67,14 @@ export default function InformacaoPaises({
     });
   }
 
+  //capiturar o clique do select de classificação
+  let selectClass = document.getElementById("combobox-classificacao");
+  if (selectClass) {
+    selectClass.addEventListener("change", function () {
+      setClassificacao(selectClass.value);
+    });
+  }
+
   function buscarCodigoInternacional(item) {
     if (!(item.cca3 === "")) {
       return item.cca3;
@@ -82,7 +98,7 @@ export default function InformacaoPaises({
             return data.includes(replaceSpecialChars(searchValue));
           } else if (tipoPesquisa === "i") {
             return data.startsWith(replaceSpecialChars(searchValue));
-          }
+          } else return "";
         })
         .filter((item) => {
           const data = replaceSpecialChars(item.translations.por.common);
@@ -98,19 +114,33 @@ export default function InformacaoPaises({
               !item.independent &&
               data.includes(replaceSpecialChars(searchValue))
             );
+          else return "";
         })
         .filter((item) => {
           const data = replaceSpecialChars(item.translations.por.common);
-          if (selectLang.value === "Todos") {
+          if (idioma === "Todos") {
             return data.includes(replaceSpecialChars(searchValue));
           } else {
             return (
               item.languages &&
               Object.values(item.languages).some((lang) =>
-                lang.includes(selectLang.value)
+                lang.includes(idioma)
               ) &&
               data.includes(replaceSpecialChars(searchValue))
             );
+          }
+        })
+        .sort((a, b) => {
+          if (ordem === "a") {
+            if (classificacao === "area") return a.area - b.area;
+            else if (classificacao === "population")
+              return a.population - b.population;
+            else return "";
+          } else {
+            if (classificacao === "area") return b.area - a.area;
+            else if (classificacao === "population")
+              return b.population - a.population;
+            else return "";
           }
         })
         .map((item, index) => (

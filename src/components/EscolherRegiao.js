@@ -1,3 +1,5 @@
+import "./Seletores.css";
+
 export default function EscolherRegiao() {
   return (
     <div className="seletor-regiao">

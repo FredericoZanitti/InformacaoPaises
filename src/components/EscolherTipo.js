@@ -7,7 +7,7 @@ export default function EscolherTipo({ onChangeReconhecidos }) {
 
   return (
     <div className="escolher-tipo">
-      <label htmlFor="reconhecido" className="reconhecido-label">
+      <label htmlFor="reconhecido" className="input-label">
         Nação independente
       </label>
       <input
@@ -22,7 +22,6 @@ export default function EscolherTipo({ onChangeReconhecidos }) {
         <div className="radio-btn"></div>
         <span>Reconhecidas</span>
       </label>
-
       <input
         type="radio"
         className="input-radio"
@@ -35,7 +34,6 @@ export default function EscolherTipo({ onChangeReconhecidos }) {
         <div className="radio-btn"></div>
         <span>Não Reconhecidas</span>
       </label>
-
       <input
         type="radio"
         className="input-radio"

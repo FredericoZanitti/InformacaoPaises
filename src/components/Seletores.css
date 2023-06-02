@@ -32,15 +32,9 @@
   }
 }
 
-.seletor-idiomas {
-  padding: 0.5em;
-  margin: auto;
-  display: block;
-  width: 16em;
-  text-align: left;
-}
-
-.seletor-regiao {
+.seletor-idiomas,
+.seletor-regiao,
+.seletor-classificacao {
   padding: 0.5em;
   margin: auto;
   display: block;
@@ -50,7 +44,7 @@
 
 .label-comboboxes {
   font-weight: normal;
-  font-size: 0.9em;
+  font-size: 0.8em;
   display: block;
   margin-bottom: 0.4em;
   color: lightslategrey;

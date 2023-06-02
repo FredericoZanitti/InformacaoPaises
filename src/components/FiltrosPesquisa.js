@@ -3,11 +3,14 @@ import EscolherPesquisa from "./EscolherPesquisa";
 import PesquisarPorNome from "./PesquisarPorNome";
 import EscolherRegiao from "./EscolherRegiao";
 import EscolherIdioma from "./EscolherIdioma";
+import ClassificarPor from "./ClassificarPor";
+import EscolherOrdem from "./EscolherOrdem";
 
 export default function FiltrosPesquisa({
   setSearchValue,
   onChangeTipoPesquisa,
   onChangeReconhecidos,
+  onChangeOrdem,
 }) {
   function handlePesquisaNomeChange(value) {
     setSearchValue(value);
@@ -21,6 +24,10 @@ export default function FiltrosPesquisa({
     onChangeReconhecidos(value);
   }
 
+  function handleOrdemChange(value) {
+    onChangeOrdem(value);
+  }
+
   return (
     <div className="filtros-pesquisa">
       <div className="combobox-group">
@@ -31,6 +38,8 @@ export default function FiltrosPesquisa({
       <span className="separador"></span>
       <EscolherPesquisa onChangeTipoPesquisa={handleTipoPesquisaChange} />
       <span className="separador"></span>
+      <ClassificarPor />
+      <EscolherOrdem onChangeOrdem={handleOrdemChange} />
       <EscolherTipo onChangeReconhecidos={handleReconhecidoChange} />
       <div className="copyright">
         Copyright © 2023 <br /> Frederico Zanitti Silva

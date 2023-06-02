@@ -7,7 +7,7 @@ export default function EscolherTipo({ onChangeTipoPesquisa }) {
 
   return (
     <div className="escolher-tipo">
-      <label htmlFor="inicio" className="parte-nome-label">
+      <label htmlFor="inicio" className="input-label">
         Pesquisar nome
       </label>
       <input
