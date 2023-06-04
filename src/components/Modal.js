@@ -181,6 +181,13 @@ export default function Modal({
                   ? setCodigoIndividual.continents[0]
                   : "Continente: N/A"}
               </span>
+              <span>
+                <b>Subregião:</b>{" "}
+                {setCodigoIndividual.subregion &&
+                setCodigoIndividual.subregion.length > 0
+                  ? setCodigoIndividual.subregion
+                  : "N/A"}
+              </span>
               {setCodigoIndividual.timezones &&
               setCodigoIndividual.timezones.length > 0 ? (
                 <span>

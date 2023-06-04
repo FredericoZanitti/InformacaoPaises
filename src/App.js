@@ -16,7 +16,7 @@ function App() {
     pesq.checked = true;
     const rec = document.getElementById("todas");
     rec.checked = true;
-    const ord = document.getElementById("ascendente");
+    const ord = document.getElementById("descendente");
     ord.checked = true;
   }, []);
 
