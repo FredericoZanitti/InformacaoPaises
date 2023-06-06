@@ -8,12 +8,12 @@ https://restcountries.com
 
 ### Prints do sistema funcionando em um computador
 
-![Responsividade - Computador](https://zanitti.com.br/imagens/outras/if_computer.jpg)
+![Responsividade - Computador](https://zanitti.com.br/imagens/outras/if_computer_new.jpg)
 
-![Responsividade - Computador](https://zanitti.com.br/imagens/outras/if_computer2.jpg)
+![Responsividade - Computador](https://zanitti.com.br/imagens/outras/if_computer2_new.jpg)
 
 ### Prints do sistema funcionando em um mobile
 
-![Responsividade - Computador](https://zanitti.com.br/imagens/outras/if_mobile.jpg)
+![Responsividade - Computador](https://zanitti.com.br/imagens/outras/if_mobile_new.jpg)
 
-![Responsividade - Computador](https://zanitti.com.br/imagens/outras/if_mobile2.jpg)
+![Responsividade - Computador](https://zanitti.com.br/imagens/outras/if_mobile2_new.jpg)
