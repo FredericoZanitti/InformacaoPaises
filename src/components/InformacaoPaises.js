@@ -7,6 +7,7 @@ export default function InformacaoPaises({
   tipoPesquisa,
   reconhecido,
   ordem,
+  capital,
 }) {
   const [dgData, setDgData] = useState([]);
   const [regiao, setRegiao] = useState("Todas");
@@ -16,13 +17,18 @@ export default function InformacaoPaises({
   const [codigoInd, setCodigoInd] = useState({});
 
   const replaceSpecialChars = (str) => {
-    return str
-      .normalize("NFD")
-      .toLowerCase()
-      .replace(/[\u0300-\u036f]/g, "") // Remove acentos
-      .replace(/([^\w]+|\s+)/g, " ") // Substitui espaço e outros caracteres por hífen
-      .replace(/\-\-+/g, " ") // Substitui multiplos hífens por um único hífen
-      .replace(/(^-+|-+$)/, ""); // Remove hífens extras do final ou do inicio da string
+    if (Array.isArray(str)) str = str.join("");
+
+    if (str !== undefined) {
+      return str
+        .normalize("NFD")
+        .toLowerCase()
+        .replace(/[\u0300-\u036f]/g, "") // Remove acentos
+        .replace(/([^\w]+|\s+)/g, " ") // Substitui espaço e outros caracteres por hífen
+        .replace(/\-\-+/g, " ") // Substitui multiplos hífens por um único hífen
+        .replace(/(^-+|-+$)/, "");
+    } // Remove hífens extras do final ou do inicio da string
+    else return "";
   };
 
   useEffect(() => {
@@ -129,6 +135,14 @@ export default function InformacaoPaises({
               data.includes(replaceSpecialChars(searchValue))
             );
           }
+        })
+        .filter((item) => {
+          const data = replaceSpecialChars(item.capital);
+          if (tipoPesquisa === "q") {
+            return data.includes(replaceSpecialChars(capital));
+          } else if (tipoPesquisa === "i") {
+            return data.startsWith(replaceSpecialChars(capital));
+          } else return "";
         })
         .sort((a, b) => {
           if (ordem === "a") {

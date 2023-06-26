@@ -5,12 +5,14 @@ import EscolherRegiao from "./EscolherRegiao";
 import EscolherIdioma from "./EscolherIdioma";
 import ClassificarPor from "./ClassificarPor";
 import EscolherOrdem from "./EscolherOrdem";
+import PesquisarPorCapital from "./PesquisaPorCapital";
 
 export default function FiltrosPesquisa({
   setSearchValue,
   onChangeTipoPesquisa,
   onChangeReconhecidos,
   onChangeOrdem,
+  onChangePesquisaCapital,
 }) {
   function handlePesquisaNomeChange(value) {
     setSearchValue(value);
@@ -28,6 +30,10 @@ export default function FiltrosPesquisa({
     onChangeOrdem(value);
   }
 
+  function handlePesquisaCapitalChange(value) {
+    onChangePesquisaCapital(value);
+  }
+
   return (
     <div className="filtros-pesquisa">
       <div className="combobox-group">
@@ -35,6 +41,10 @@ export default function FiltrosPesquisa({
         <EscolherIdioma />
       </div>
       <PesquisarPorNome onChangePesquisaNome={handlePesquisaNomeChange} />
+      <span className="separador"></span>
+      <PesquisarPorCapital
+        onChangePesquisaCapital={handlePesquisaCapitalChange}
+      />
       <span className="separador"></span>
       <EscolherPesquisa onChangeTipoPesquisa={handleTipoPesquisaChange} />
       <span className="separador"></span>
