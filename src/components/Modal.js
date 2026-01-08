@@ -72,7 +72,9 @@ export default function Modal({
 
           if (item.borders) {
             if (item.borders.includes(pais)) {
-              output += `${item.translations.por.common}, `;
+              output += `${
+                item.translations?.por?.common || item.name.common
+              }, `;
             }
           }
         }

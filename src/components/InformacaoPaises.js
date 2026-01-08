@@ -99,7 +99,9 @@ export default function InformacaoPaises({
     <div className="info-paises">
       {dgData
         .filter((item) => {
-          const data = replaceSpecialChars(item.translations.por.common);
+          const data = replaceSpecialChars(
+            item.translations?.por?.common || item.name.common
+          );
           if (tipoPesquisa === "q") {
             return data.includes(replaceSpecialChars(searchValue));
           } else if (tipoPesquisa === "i") {
@@ -107,7 +109,9 @@ export default function InformacaoPaises({
           } else return "";
         })
         .filter((item) => {
-          const data = replaceSpecialChars(item.translations.por.common);
+          const data = replaceSpecialChars(
+            item.translations?.por?.common || item.name.common
+          );
           if (reconhecido === "t") {
             return data.includes(replaceSpecialChars(searchValue));
           } else if (reconhecido === "s")
@@ -123,7 +127,9 @@ export default function InformacaoPaises({
           else return "";
         })
         .filter((item) => {
-          const data = replaceSpecialChars(item.translations.por.common);
+          const data = replaceSpecialChars(
+            item.translations?.por?.common || item.name.common
+          );
           if (idioma === "Todos") {
             return data.includes(replaceSpecialChars(searchValue));
           } else {
@@ -169,7 +175,9 @@ export default function InformacaoPaises({
               className="info-paises-bandeira"
             />
             <div className="info-paises-index">{index + 1}</div>
-            <p className="info-paises-nome">{item.translations.por.common}</p>
+            <p className="info-paises-nome">
+              {item.translations?.por?.common || item.name.common}
+            </p>
 
             {item.capital && item.capital.length > 0 ? (
               <p className="info-paises-others">
