@@ -1,4 +1,4 @@
-import { infoPaises } from "../api/paises.js";
+import infoPaises from "../api/paises.js";
 import { useState, useEffect } from "react";
 import Modal from "./Modal.js";
 
