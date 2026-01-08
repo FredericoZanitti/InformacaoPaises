@@ -45,8 +45,8 @@ export default function InformacaoPaises({
     infoPaises(regiao)
       .then((resp) => {
         const sortedData = resp.data.sort((a, b) => {
-          return a.translations.por.common.localeCompare(
-            b.translations.por.common
+          return (a.translations?.por?.common || a.name.common).localeCompare(
+            b.translations?.por?.common || b.name.common
           );
         });
 
