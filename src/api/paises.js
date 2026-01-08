@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export function infoPaises(regiao) {
+export default function infoPaises(regiao) {
   const fields =
     "name,translations,region,subregion,capital,population,flags,languages,currencies,cca2,cca3";
 
