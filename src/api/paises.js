@@ -1,13 +1,15 @@
 import axios from "axios";
 
 export function infoPaises(regiao) {
-  let url = "";
+  const fields =
+    "name,translations,region,subregion,capital,population,flags,languages,currencies,cca2,cca3";
 
-  regiao === "Todas"
-    ? (url = "https://restcountries.com/v3.1/all")
-    : (url = `https://restcountries.com/v3.1/region/${regiao}`);
+  const url =
+    regiao === "Todas"
+      ? `https://restcountries.com/v3.1/all?fields=${fields}`
+      : `https://restcountries.com/v3.1/region/${encodeURIComponent(
+          regiao
+        )}?fields=${fields}`;
 
-  return axios.get(url, {
-    withCredentials: true,
-  });
+  return axios.get(url);
 }
